@@ -1,7 +1,7 @@
-vel-koz
+Vel-koz
 =======
 
-vel-koz is a wrapper for the Riot Games League of Legends API designed for high throughput asynchronous requests.
+Vel-koz is a wrapper for the Riot Games League of Legends API designed for high throughput asynchronous requests.
 
 Example Use
 -----------
