@@ -7,11 +7,16 @@ Example Use
 -----------
 
 ~~~
-APIConnection connection = new APIConnection("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", new Config(65536));
+APIConnection connection = new APIConnection(
+    "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", 
+    new Config(65536)
+);
 
 Future f = connection.execute(new SummonerRequest(
     Region.EUW, 
-    result -> result.values().forEach(summoner -> System.out.println(summoner.getId() + ": " + summoner.getName())), 
+    result -> result.values().forEach(
+        summoner -> System.out.println(summoner.getId() + ": " + summoner.getName())
+    ), 
     error -> error.printStackTrace(), 
     27966968L, 46768456L, 27665779L, 50499923L, 27695267L
 ));
