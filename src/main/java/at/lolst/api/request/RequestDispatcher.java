@@ -105,4 +105,8 @@ public final class RequestDispatcher {
 	public Cache getCache() {
 		return cache;
 	}
+
+	public void close() {
+		client.close();
+	}
 }

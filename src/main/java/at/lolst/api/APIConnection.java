@@ -70,4 +70,8 @@ public final class APIConnection {
 			return dispatcher.execute(request, true);
 		}
 	}
+
+	public void close() {
+		dispatcher.close();
+	}
 }

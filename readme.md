@@ -26,4 +26,6 @@ System.out.println("before wait on future");
 f.await();
 
 System.out.println("after wait on future");
+
+connection.close();
 ~~~
