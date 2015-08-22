@@ -2,6 +2,7 @@ package at.lolst.api.request;
 
 import java.util.Optional;
 
+import at.lolst.api.APIConnection;
 import at.lolst.api.Future;
 
 import com.ning.http.client.AsyncCompletionHandler;
@@ -15,17 +16,17 @@ import com.ning.http.client.Response;
  *
  */
 public final class RequestDispatcher {
-	private final static int MAX_CONNECTIONS = 64;
-
+	private final APIConnection connection;
 	private final Cache cache;
 
 	private final String key;
 	private final AsyncHttpClient client;
 
-	public RequestDispatcher(Cache cache, String key) {
+	public RequestDispatcher(APIConnection connection, Cache cache, String key) {
+		this.connection = connection;
 		this.cache = cache;
 		this.key = key;
-		this.client = new AsyncHttpClient(new AsyncHttpClientConfig.Builder().setMaxConnectionsPerHost(MAX_CONNECTIONS).build());
+		this.client = new AsyncHttpClient(new AsyncHttpClientConfig.Builder().setAllowPoolingConnections(true).setAllowPoolingSslConnections(true).build());
 	}
 
 	public <T> Future execute(final Request<T> request, boolean aggregate) throws InterruptedException {
@@ -50,6 +51,8 @@ public final class RequestDispatcher {
 		synchronized (cache.getExecuting()) {
 			cache.startExecuting(request, future);
 		}
+
+		connection.waitForRateLimits();
 
 		client.prepareGet(url).execute(new AsyncCompletionHandler<Response>() {
 			@Override

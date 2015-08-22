@@ -47,7 +47,7 @@ public final class RateLimit implements Runnable {
 				long toSleep = Math.max(0, time - (current - last));
 				last = current;
 				Thread.sleep(toSleep);
-	
+
 				int diff = number - semaphore.availablePermits();
 				semaphore.release(diff);
 			} catch (InterruptedException e) {

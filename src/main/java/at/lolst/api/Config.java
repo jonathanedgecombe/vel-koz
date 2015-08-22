@@ -20,7 +20,7 @@ public final class Config {
 	public Config(int cacheSize) {
 		this.cacheSize = cacheSize;
 
-		this.cacheTimeouts.put(SummonerRequest.class, 60 * 60);
+		this.cacheTimeouts.put(SummonerRequest.class, 60 * 60 * 1000);
 	}
 
 	public int getCacheSize() {
@@ -35,7 +35,7 @@ public final class Config {
 	 * Set a timeout for the given class of request.
 	 * 
 	 * @param requestClass
-	 * @param timeout given in seconds.
+	 * @param timeout given in milliseconds.
 	 * @return
 	 */
 	public Config setTimeout(Class<? extends Request<?>> requestClass, int timeout) {

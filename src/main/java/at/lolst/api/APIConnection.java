@@ -20,7 +20,7 @@ public final class APIConnection {
 
 	public APIConnection(String key, Config config, RateLimit... rateLimits) {
 		this.cache = new Cache(config);
-		this.dispatcher = new RequestDispatcher(cache, key);
+		this.dispatcher = new RequestDispatcher(this, cache, key);
 
 		for (RateLimit rateLimit : rateLimits) {
 			addRateLimit(rateLimit);

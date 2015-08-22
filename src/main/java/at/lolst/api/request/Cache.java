@@ -53,16 +53,16 @@ public final class Cache {
 
 	@SuppressWarnings("unchecked")
 	public <T> void finishExecuting(final Request<T> request, T result) {
-		List<Request<?>> requests = executing.get(request);
-		requests.forEach(r -> ((Request<T>) r).onCompletion.accept(result));
+		Optional<List<Request<?>>> requests = Optional.ofNullable(executing.get(request));
+		requests.ifPresent(req -> req.forEach(r -> ((Request<T>) r).onCompletion.accept(result)));
 
 		executing.remove(request);
 		executingFutures.remove(request);
 	}
 
 	public <T> void finishExecutingError(Request<T> request, Throwable error) {
-		List<Request<?>> requests = executing.get(request);
-		requests.forEach(r -> r.onError.accept(error));
+		Optional<List<Request<?>>> requests = Optional.ofNullable(executing.get(request));
+		requests.ifPresent(req -> req.forEach(r -> r.onError.accept(error)));
 
 		executing.remove(request);
 		executingFutures.remove(request);
@@ -87,7 +87,7 @@ public final class Cache {
 				if (timeout.isPresent()) {
 					long diff = time - entry.getValue().getTime();
 
-					if (diff / 1000 > timeout.get()) {
+					if (diff > timeout.get()) {
 						iterator.remove();
 						priorityQueue.remove(entry.getKey());
 					}
@@ -122,7 +122,7 @@ public final class Cache {
 		if (!timeout.isPresent()) return Optional.of(entry.get().getResult());
 
 		long diff = System.currentTimeMillis() - entry.get().getTime();
-		if (diff / 1000 > timeout.get()) {
+		if (diff > timeout.get()) {
 			cache.remove(request);
 			priorityQueue.remove(request);
 			return Optional.empty();
