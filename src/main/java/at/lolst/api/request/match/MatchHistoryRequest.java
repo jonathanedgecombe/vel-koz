@@ -13,10 +13,13 @@ public final class MatchHistoryRequest extends Request<MatchHistory> {
 	private final static Type TYPE = new TypeToken<MatchHistory>(){}.getType();
 
 	private final long summonerId;
+	private final int beginIndex, endIndex;
 
-	public MatchHistoryRequest(Region region, Consumer<MatchHistory> onCompletion, Consumer<Throwable> onError, long summonerId) {
+	public MatchHistoryRequest(Region region, Consumer<MatchHistory> onCompletion, Consumer<Throwable> onError, long summonerId, int beginIndex, int endIndex) {
 		super(region, onCompletion, onError);
 		this.summonerId = summonerId;
+		this.beginIndex = beginIndex;
+		this.endIndex = endIndex;
 	}
 
 	@Override
@@ -26,18 +29,18 @@ public final class MatchHistoryRequest extends Request<MatchHistory> {
 
 	@Override
 	public String getUrl() {
-		return "/api/lol/" + region + "/v2.2/matchhistory/" + summonerId;
+		return "/api/lol/" + region + "/v2.2/matchhistory/" + summonerId + "?beginIndex=" + beginIndex + "&endIndex=" + endIndex;
 	}
 
 	@Override
 	public boolean equals(Object o) {
 		if (!(o instanceof MatchHistoryRequest)) return false;
 		MatchHistoryRequest r = (MatchHistoryRequest) o;
-		return (r.region == region && r.summonerId == summonerId);
+		return (r.region == region && r.summonerId == summonerId && r.beginIndex == beginIndex && r.endIndex == endIndex);
 	}
 
 	@Override
 	public int hashCode() {
-		return (int) (region.hashCode() + summonerId * 46447);
+		return (int) (region.hashCode() + summonerId * 46447 + beginIndex * 23 + endIndex * 7);
 	}
 }

@@ -41,6 +41,6 @@ public final class MatchListRequest extends Request<MatchList> {
 
 	@Override
 	public int hashCode() {
-		return (int) (region.hashCode() + summonerId * 46447);
+		return (int) (region.hashCode() + summonerId * 46447 + beginIndex * 23 + endIndex * 7);
 	}
 }
