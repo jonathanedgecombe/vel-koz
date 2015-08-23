@@ -49,7 +49,7 @@ public final class SummonerRequest extends Request<Map<String, Summoner>> {
 	public boolean equals(Object o) {
 		if (!(o instanceof SummonerRequest)) return false;
 		SummonerRequest r = (SummonerRequest) o;
-		return (r.region == this.region && r.summonerIds.equals(this.summonerIds));
+		return (r.region == region && r.summonerIds.equals(summonerIds));
 	}
 
 	@Override
