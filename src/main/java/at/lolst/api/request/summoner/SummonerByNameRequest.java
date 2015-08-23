@@ -26,9 +26,9 @@ public final class SummonerByNameRequest extends Request<Map<String, Summoner>> 
 
 	private final List<String> summonerNames;
 
-	public SummonerByNameRequest(Region region, Consumer<Map<String, Summoner>> onCompletion, Consumer<Throwable> onError, String... summonerIds) {
+	public SummonerByNameRequest(Region region, Consumer<Map<String, Summoner>> onCompletion, Consumer<Throwable> onError, String... summonerNames) {
 		super(region, onCompletion, onError);
-		this.summonerNames = Arrays.asList(summonerIds);
+		this.summonerNames = Arrays.asList(summonerNames);
 	}
 
 	public List<String> getSummonerNames() {
