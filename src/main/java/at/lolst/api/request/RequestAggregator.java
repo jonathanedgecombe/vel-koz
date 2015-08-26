@@ -9,7 +9,7 @@ import at.lolst.api.Future;
  * @param <T>
  */
 public abstract class RequestAggregator<T> {
-	public abstract Future aggregate(Request<T> request, RequestDispatcher dispatcher) throws InterruptedException;
+	public abstract Future aggregate(Request<T> request, RequestDispatcher dispatcher, boolean wait) throws InterruptedException;
 
 	public abstract void cache(Request<T> request, T result, Cache cache);
 }

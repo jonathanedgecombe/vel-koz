@@ -23,7 +23,7 @@ import at.lolst.api.request.RequestDispatcher;
  */
 public class SummonerRequestAggregator extends RequestAggregator<Map<String, Summoner>> {
 	@Override
-	public synchronized Future aggregate(Request<Map<String, Summoner>> request, RequestDispatcher dispatcher) throws InterruptedException {
+	public synchronized Future aggregate(Request<Map<String, Summoner>> request, RequestDispatcher dispatcher, boolean wait) throws InterruptedException {
 		Cache cache = dispatcher.getCache();
 
 		BlockingDeque<Request<Map<String, Summoner>>> queue = new LinkedBlockingDeque<>();
@@ -55,7 +55,7 @@ public class SummonerRequestAggregator extends RequestAggregator<Map<String, Sum
 
 			if (summonerIds.isEmpty()) continue;
 
-			Future future = dispatcher.execute(new SummonerRequest(request.getRegion(), request.getOnCompletion(), request.getOnError(), summonerIds.toArray(new Long[0])), false);
+			Future future = dispatcher.execute(new SummonerRequest(request.getRegion(), request.getOnCompletion(), request.getOnError(), summonerIds.toArray(new Long[0])), false, wait);
 			futures.add(future);
 
 			summonerIds.forEach(summonerId -> {

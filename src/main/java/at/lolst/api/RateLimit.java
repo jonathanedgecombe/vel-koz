@@ -35,8 +35,13 @@ public final class RateLimit implements Runnable {
 		return time;
 	}
 
-	public void acquire() throws InterruptedException {
-		semaphore.acquire();
+	public boolean acquire(boolean wait) throws InterruptedException {
+		if (wait) {
+			semaphore.acquire();
+			return true;
+		}
+
+		return semaphore.tryAcquire();
 	}
 
 	@Override

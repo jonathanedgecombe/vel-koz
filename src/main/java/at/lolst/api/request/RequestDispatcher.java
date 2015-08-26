@@ -29,12 +29,12 @@ public final class RequestDispatcher {
 		this.client = new AsyncHttpClient(new AsyncHttpClientConfig.Builder().setAllowPoolingConnections(true).setAllowPoolingSslConnections(true).build());
 	}
 
-	public <T> Future execute(final Request<T> request, boolean aggregate) throws InterruptedException {
+	public <T> Future execute(final Request<T> request, boolean aggregate, boolean wait) throws InterruptedException {
 		if (aggregate) {
 			Optional<RequestAggregator<T>> aggreagtor = request.getAggregator();
 	
 			if (aggreagtor.isPresent()) {
-				return aggreagtor.get().aggregate(request, this);
+				return aggreagtor.get().aggregate(request, this, wait);
 			}
 		}
 
@@ -52,7 +52,13 @@ public final class RequestDispatcher {
 			cache.startExecuting(request, future);
 		}
 
-		connection.waitForRateLimits();
+		boolean ok = connection.waitForRateLimits(wait);
+
+		if (!ok) {
+			RequestException ex = new RequestException(429);
+			request.getOnError().accept(ex);
+			return future.unlock();
+		}
 
 		client.prepareGet(url).execute(new AsyncCompletionHandler<Response>() {
 			@Override
