@@ -8,13 +8,14 @@ import com.google.gson.reflect.TypeToken;
 import at.lolst.api.model.Region;
 import at.lolst.api.model.currentgame.CurrentGameInfo;
 import at.lolst.api.request.Request;
+import at.lolst.api.request.Result;
 
 public final class CurrentGameRequest extends Request<CurrentGameInfo> {
 	private final static Type TYPE = new TypeToken<CurrentGameInfo>(){}.getType();
 
 	private final long summonerId;
 
-	public CurrentGameRequest(Region region, Consumer<CurrentGameInfo> onCompletion, Consumer<Throwable> onError, long summonerId) {
+	public CurrentGameRequest(Region region, Consumer<Result<CurrentGameInfo>> onCompletion, Consumer<Throwable> onError, long summonerId) {
 		super(region, onCompletion, onError);
 		this.summonerId = summonerId;
 	}

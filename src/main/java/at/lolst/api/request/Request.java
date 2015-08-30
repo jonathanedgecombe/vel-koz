@@ -16,10 +16,10 @@ import com.google.gson.Gson;
  */
 public abstract class Request<T> {
 	protected final Region region;
-	protected final Consumer<T> onCompletion;
+	protected final Consumer<Result<T>> onCompletion;
 	protected final Consumer<Throwable> onError;
 
-	public Request(Region region, Consumer<T> onCompletion, Consumer<Throwable> onError) {
+	public Request(Region region, Consumer<Result<T>> onCompletion, Consumer<Throwable> onError) {
 		this.region = region;
 		this.onCompletion = onCompletion;
 		this.onError = onError;
@@ -37,7 +37,7 @@ public abstract class Request<T> {
 		return new Gson().fromJson(body, getType());
 	}
 
-	public Consumer<T> getOnCompletion() {
+	public Consumer<Result<T>> getOnCompletion() {
 		return onCompletion;
 	}
 

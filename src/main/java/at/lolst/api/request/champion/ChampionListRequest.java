@@ -8,13 +8,14 @@ import com.google.gson.reflect.TypeToken;
 import at.lolst.api.model.Region;
 import at.lolst.api.model.data.champion.ChampionList;
 import at.lolst.api.request.Request;
+import at.lolst.api.request.Result;
 
 public final class ChampionListRequest extends Request<ChampionList> {
 	private final static Type TYPE = new TypeToken<ChampionList>(){}.getType();
 
 	private final boolean freeToPlay;
 
-	public ChampionListRequest(Region region, Consumer<ChampionList> onCompletion, Consumer<Throwable> onError, boolean freeToPlay) {
+	public ChampionListRequest(Region region, Consumer<Result<ChampionList>> onCompletion, Consumer<Throwable> onError, boolean freeToPlay) {
 		super(region, onCompletion, onError);
 		this.freeToPlay = freeToPlay;
 	}

@@ -7,16 +7,16 @@ package at.lolst.api.request;
  * @param <T>
  */
 public final class CacheEntry<T> {
-	private final T value;
+	private final Result<T> result;
 	private final long time;
 
-	public CacheEntry(T value) {
-		this.value = value;
+	public CacheEntry(Result<T> result) {
+		this.result = result;
 		this.time = System.currentTimeMillis();
 	}
 
-	public T getResult() {
-		return value;
+	public Result<T> getResult() {
+		return result;
 	}
 
 	public long getTime() {

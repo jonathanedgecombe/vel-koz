@@ -8,6 +8,7 @@ import com.google.gson.reflect.TypeToken;
 import at.lolst.api.model.Region;
 import at.lolst.api.model.match.history.MatchList;
 import at.lolst.api.request.Request;
+import at.lolst.api.request.Result;
 
 public final class MatchListRequest extends Request<MatchList> {
 	private final static Type TYPE = new TypeToken<MatchList>(){}.getType();
@@ -15,7 +16,7 @@ public final class MatchListRequest extends Request<MatchList> {
 	private final long summonerId;
 	private final int beginIndex, endIndex;
 
-	public MatchListRequest(Region region, Consumer<MatchList> onCompletion, Consumer<Throwable> onError, long summonerId, int beginIndex, int endIndex) {
+	public MatchListRequest(Region region, Consumer<Result<MatchList>> onCompletion, Consumer<Throwable> onError, long summonerId, int beginIndex, int endIndex) {
 		super(region, onCompletion, onError);
 		this.summonerId = summonerId;
 		this.beginIndex = beginIndex;

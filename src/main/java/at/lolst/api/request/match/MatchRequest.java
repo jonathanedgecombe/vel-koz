@@ -8,6 +8,7 @@ import com.google.gson.reflect.TypeToken;
 import at.lolst.api.model.Region;
 import at.lolst.api.model.match.Match;
 import at.lolst.api.request.Request;
+import at.lolst.api.request.Result;
 
 public final class MatchRequest extends Request<Match> {
 	private final static Type TYPE = new TypeToken<Match>(){}.getType();
@@ -15,7 +16,7 @@ public final class MatchRequest extends Request<Match> {
 	private final long matchId;
 	private final boolean includeTimeline;
 
-	public MatchRequest(Region region, Consumer<Match> onCompletion, Consumer<Throwable> onError, long matchId, boolean includeTimeline) {
+	public MatchRequest(Region region, Consumer<Result<Match>> onCompletion, Consumer<Throwable> onError, long matchId, boolean includeTimeline) {
 		super(region, onCompletion, onError);
 		this.matchId = matchId;
 		this.includeTimeline = includeTimeline;

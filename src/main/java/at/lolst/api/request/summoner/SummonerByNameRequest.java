@@ -15,6 +15,7 @@ import at.lolst.api.model.Region;
 import at.lolst.api.model.summoner.Summoner;
 import at.lolst.api.request.Request;
 import at.lolst.api.request.RequestAggregator;
+import at.lolst.api.request.Result;
 
 /**
  * 
@@ -26,7 +27,7 @@ public final class SummonerByNameRequest extends Request<Map<String, Summoner>> 
 
 	private final List<String> summonerNames;
 
-	public SummonerByNameRequest(Region region, Consumer<Map<String, Summoner>> onCompletion, Consumer<Throwable> onError, String... summonerNames) {
+	public SummonerByNameRequest(Region region, Consumer<Result<Map<String, Summoner>>> onCompletion, Consumer<Throwable> onError, String... summonerNames) {
 		super(region, onCompletion, onError);
 		this.summonerNames = Arrays.asList(summonerNames);
 	}

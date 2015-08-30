@@ -14,7 +14,7 @@ APIConnection connection = new APIConnection(
 
 Future f = connection.execute(new SummonerRequest(
     Region.EUW, 
-    result -> result.values().forEach(
+    result -> result.getValue().values().forEach(
         summoner -> System.out.println(summoner.getId() + ": " + summoner.getName())
     ), 
     error -> error.printStackTrace(), 

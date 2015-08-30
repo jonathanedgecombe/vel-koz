@@ -52,7 +52,7 @@ public final class Cache {
 	}
 
 	@SuppressWarnings("unchecked")
-	public <T> void finishExecuting(final Request<T> request, T result) {
+	public <T> void finishExecuting(final Request<T> request, Result<T> result) {
 		Optional<List<Request<?>>> requests = Optional.ofNullable(executing.get(request));
 		requests.ifPresent(req -> req.forEach(r -> ((Request<T>) r).onCompletion.accept(result)));
 
@@ -72,7 +72,7 @@ public final class Cache {
 		return executing;
 	}
 
-	public synchronized <T> void cache(Request<T> request, T value, boolean aggregate) {
+	public synchronized <T> void cache(Request<T> request, Result<T> value, boolean aggregate) {
 		long time = System.currentTimeMillis();
 
 		if (time - lastCheck > CHECK_TIMEOUT) {
@@ -114,7 +114,7 @@ public final class Cache {
 	}
 
 	@SuppressWarnings("unchecked")
-	public synchronized <T> Optional<T> check(Request<T> request) {
+	public synchronized <T> Optional<Result<T>> check(Request<T> request) {
 		Optional<CacheEntry<T>> entry = Optional.ofNullable((CacheEntry<T>) cache.get(request));
 		if (!entry.isPresent()) return Optional.empty();
 

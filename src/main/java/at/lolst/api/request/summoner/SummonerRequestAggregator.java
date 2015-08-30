@@ -15,6 +15,7 @@ import at.lolst.api.request.Cache;
 import at.lolst.api.request.Request;
 import at.lolst.api.request.RequestAggregator;
 import at.lolst.api.request.RequestDispatcher;
+import at.lolst.api.request.Result;
 
 /**
  * 
@@ -44,7 +45,7 @@ public class SummonerRequestAggregator extends RequestAggregator<Map<String, Sum
 					}
 				}
 
-				Optional<Map<String, Summoner>> result = dispatcher.getCache().check(r);
+				Optional<Result<Map<String, Summoner>>> result = dispatcher.getCache().check(r);
 
 				if (result.isPresent()) {
 					r.getOnCompletion().accept(result.get());
@@ -74,17 +75,18 @@ public class SummonerRequestAggregator extends RequestAggregator<Map<String, Sum
 	}
 
 	@Override
-	public void cache(Request<Map<String, Summoner>> request, final Map<String, Summoner> result, Cache cache) {
+	public void cache(Request<Map<String, Summoner>> request, final Result<Map<String, Summoner>> result, Cache cache) {
 		((SummonerRequest) request).explode().forEach(r -> {
 			long summonerId = r.getSummonerIds().get(0);
 
 			String key = Long.toString(summonerId);
 			Map<String, Summoner> map = new HashMap<>();
-			map.put(key, result.get(key));
-			cache.cache(r, map, false);
+			map.put(key, result.getValue().get(key));
+			Result<Map<String, Summoner>> newResult = new Result<>(result.getJson(), map);
+			cache.cache(r, newResult, false);
 
 			synchronized (cache.getExecuting()) {
-				cache.finishExecuting(new SummonerRequest(request.getRegion(), request.getOnCompletion(), request.getOnError(), summonerId), map);
+				cache.finishExecuting(new SummonerRequest(request.getRegion(), request.getOnCompletion(), request.getOnError(), summonerId), newResult);
 			}
 		});
 	}

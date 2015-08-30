@@ -65,7 +65,10 @@ public final class RequestDispatcher {
 			public Response onCompleted(Response response) throws InterruptedException {
 				if (response.getStatusCode() == 200) {
 					try {
-						T result = request.deserialize(response.getResponseBody());
+						String body = response.getResponseBody();
+						
+						T value = request.deserialize(body);
+						Result<T> result = new Result<>(body, value);
 						cache.cache(request, result, true);
 						request.getOnCompletion().accept(result);
 

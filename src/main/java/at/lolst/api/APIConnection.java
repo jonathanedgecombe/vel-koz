@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import at.lolst.api.request.Cache;
 import at.lolst.api.request.RequestDispatcher;
+import at.lolst.api.request.Result;
 import at.lolst.api.request.Request;
 
 /**
@@ -64,7 +65,7 @@ public final class APIConnection {
 			}
 		}
 
-		Optional<T> result = cache.check(request);
+		Optional<Result<T>> result = cache.check(request);
 
 		if (result.isPresent()) {
 			request.getOnCompletion().accept(result.get());

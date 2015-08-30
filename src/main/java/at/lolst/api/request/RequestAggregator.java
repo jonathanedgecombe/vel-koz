@@ -10,6 +10,5 @@ import at.lolst.api.Future;
  */
 public abstract class RequestAggregator<T> {
 	public abstract Future aggregate(Request<T> request, RequestDispatcher dispatcher, boolean wait) throws InterruptedException;
-
-	public abstract void cache(Request<T> request, T result, Cache cache);
+	public abstract void cache(Request<T> request, Result<T> result, Cache cache);
 }
