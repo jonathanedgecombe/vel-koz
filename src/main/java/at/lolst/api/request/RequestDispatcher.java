@@ -52,9 +52,7 @@ public final class RequestDispatcher {
 			cache.startExecuting(request, future);
 		}
 
-		boolean ok = connection.waitForRateLimits(wait);
-
-		if (!ok) {
+		if (!connection.waitForRateLimits(wait)) {
 			RequestException ex = new RequestException(429);
 			request.getOnError().accept(ex);
 			return future.unlock();
