@@ -44,7 +44,7 @@ public abstract class Request<T> {
 	}
 
 	public void accept(Exception error) {
-		onError.accept(error);
+		if (onError != null) onError.accept(error);
 	}
 
 	public Optional<RequestAggregator<T>> getAggregator() {
