@@ -17,17 +17,16 @@ import at.lolst.api.request.Request;
 import at.lolst.api.request.RequestAggregator;
 import at.lolst.api.request.Result;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class SummonerRequest extends Request<Map<String, Summoner>> {
 	private final static Type TYPE = new TypeToken<Map<String, Summoner>>(){}.getType();
 
 	private final List<Long> summonerIds;
 
-	public SummonerRequest(Region region, Consumer<Result<Map<String, Summoner>>> onCompletion, Consumer<Throwable> onError, Long... summonerIds) {
+	public SummonerRequest(Region region, Long... summonerIds) {
+		this(region, null, null, summonerIds);
+	}
+
+	public SummonerRequest(Region region, Consumer<Result<Map<String, Summoner>>> onCompletion, Consumer<Exception> onError, Long... summonerIds) {
 		super(region, onCompletion, onError);
 		this.summonerIds = Arrays.asList(summonerIds);
 	}

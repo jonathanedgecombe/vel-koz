@@ -7,11 +7,6 @@ import at.lolst.api.model.data.BasicDataStats;
 import at.lolst.api.model.data.Image;
 import at.lolst.api.model.data.rune.MetaData;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class Item {
 	private final String colloq;
 	private final boolean consumeOnFull;

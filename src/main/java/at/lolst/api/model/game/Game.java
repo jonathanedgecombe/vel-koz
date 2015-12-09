@@ -2,11 +2,6 @@ package at.lolst.api.model.game;
 
 import java.util.List;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class Game {
 	private final int championId, ipEarned, level, mapId, spell1, spell2, teamId;
 	private final long createDate, gameId;

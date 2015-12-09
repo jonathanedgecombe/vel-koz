@@ -2,11 +2,6 @@ package at.lolst.api.model.match;
 
 import java.util.List;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class Participant {
 	private final int championId, participantId, spell1Id, spell2Id, teamId;
 	private final List<Mastery> masteries;

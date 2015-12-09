@@ -1,10 +1,5 @@
 package at.lolst.api.model.data.champion;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class Recommended {
 	private final String champion, map, mode, title, type;
 	private boolean priority;

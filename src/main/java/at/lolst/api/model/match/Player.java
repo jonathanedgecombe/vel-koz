@@ -1,10 +1,5 @@
 package at.lolst.api.model.match;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class Player {
 	private final String matchHistoryUri, summonerName;
 	private final int profileIcon;

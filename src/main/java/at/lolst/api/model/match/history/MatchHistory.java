@@ -4,11 +4,6 @@ import java.util.List;
 
 import at.lolst.api.model.match.Match;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class MatchHistory {
 	private final List<Match> matches;
 

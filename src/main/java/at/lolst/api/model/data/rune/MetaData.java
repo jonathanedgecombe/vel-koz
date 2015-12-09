@@ -1,10 +1,5 @@
 package at.lolst.api.model.data.rune;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class MetaData {
 	private final boolean isRune;
 	private final String tier, type;

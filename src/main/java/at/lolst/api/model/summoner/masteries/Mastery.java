@@ -1,10 +1,5 @@
 package at.lolst.api.model.summoner.masteries;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class Mastery {
 	private final int id;
 	private final int rank;

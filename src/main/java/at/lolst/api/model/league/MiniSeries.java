@@ -3,11 +3,6 @@ package at.lolst.api.model.league;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class MiniSeries {
 	public enum GameResult {
 		WIN,

@@ -6,11 +6,6 @@ import at.lolst.api.model.data.Image;
 import at.lolst.api.model.data.LevelTip;
 import at.lolst.api.model.data.SpellVars;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class SummonerSpell {
 	private final List<Double> cooldown;
 	private final String cooldownBurn, costBurn, costType, description, key, name, rangeBurn, resource, sanitizedTooltip, sanitizedDescription, tooltip;

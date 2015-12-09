@@ -2,11 +2,6 @@ package at.lolst.api.model.match;
 
 import java.util.List;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class Event {
 	private final String ascendedType, buildingType, eventType, laneType, levelUpType, monsterType, pointCaptured, towerType, wardType;
 	private final List<Integer> assistingParticipantIds;

@@ -1,10 +1,5 @@
 package at.lolst.api.model.match;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class Position {
 	private final int x, y;
 

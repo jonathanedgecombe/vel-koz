@@ -1,10 +1,5 @@
 package at.lolst.api.model.champion;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class ChampionStatus {
 	private final boolean active, botEnabled, botMmEnabled, freeToPlay, rankedPlayEnabled;
 	private final long id;

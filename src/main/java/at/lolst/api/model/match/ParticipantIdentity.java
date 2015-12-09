@@ -1,10 +1,5 @@
 package at.lolst.api.model.match;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class ParticipantIdentity {
 	private final int participantId;
 	private final Player player;

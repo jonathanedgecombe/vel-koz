@@ -1,10 +1,5 @@
 package at.lolst.api.model.data.champion;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class Stats {
 	private final double armor, armorperlevel, attackdamage, attackdamageperlevel, attackrange, attackspeedoffset, attackspeedperlevel, crit, critperlevel, hp, hpperlevel, hpregen, hpregenperlevel, movespeed, mp, mpperlevel, mpregen, mpregenperlevel, spellblock, spellblockperlevel;
 

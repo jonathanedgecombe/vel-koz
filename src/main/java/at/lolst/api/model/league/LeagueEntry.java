@@ -1,10 +1,5 @@
 package at.lolst.api.model.league;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class LeagueEntry {
 	private final String division, playerOrTeamId, playerOrTeamName;
 	private final boolean isFreshBlood, isHotStreak, isInactive, isVeteran;

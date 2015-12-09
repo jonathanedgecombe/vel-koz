@@ -1,10 +1,5 @@
 package at.lolst.api.model.data.champion;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class BlockItem {
 	private final int count, id;
 

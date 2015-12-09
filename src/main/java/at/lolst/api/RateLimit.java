@@ -1,12 +1,8 @@
 package at.lolst.api;
 
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.TimeUnit;
 
-/**
- * 
- * @author Jonathan
- *
- */
 public final class RateLimit implements Runnable {
 	private final int number;
 	private final int time;
@@ -14,14 +10,9 @@ public final class RateLimit implements Runnable {
 
 	private long last = System.currentTimeMillis();
 
-	/**
-	 * Create a new rate limit.
-	 * @param number Number of requests for time window.
-	 * @param time Time window in milliseconds.
-	 */
-	public RateLimit(int number, int time) {
+	public RateLimit(int number, int duration, TimeUnit unit) {
 		this.number = number;
-		this.time = time;
+		this.time = (int) unit.toMillis(duration);
 		this.semaphore = new Semaphore(number);
 
 		new Thread(this).start();

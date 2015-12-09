@@ -7,11 +7,6 @@ import at.lolst.api.model.data.BasicDataStats;
 import at.lolst.api.model.data.Image;
 import at.lolst.api.model.data.item.Gold;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class Rune {
 	private final String colloq;
 	private final boolean consumeOnFull;

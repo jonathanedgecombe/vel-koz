@@ -2,11 +2,6 @@ package at.lolst.api.model.league;
 
 import java.util.List;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class League {
 	private final String name, participantId, queue, tier;
 	private final List<LeagueEntry> entries;

@@ -1,10 +1,5 @@
 package at.lolst.api.model.currentgame;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class BannedChampion {
 	private final long championId, teamId;
 	private final int pickTurn;

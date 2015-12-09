@@ -15,7 +15,11 @@ public final class CurrentGameRequest extends Request<CurrentGameInfo> {
 
 	private final long summonerId;
 
-	public CurrentGameRequest(Region region, Consumer<Result<CurrentGameInfo>> onCompletion, Consumer<Throwable> onError, long summonerId) {
+	public CurrentGameRequest(Region region, long summonerId) {
+		this(region, null, null, summonerId);
+	}
+
+	public CurrentGameRequest(Region region, Consumer<Result<CurrentGameInfo>> onCompletion, Consumer<Exception> onError, long summonerId) {
 		super(region, onCompletion, onError);
 		this.summonerId = summonerId;
 	}

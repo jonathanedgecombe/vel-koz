@@ -1,10 +1,5 @@
 package at.lolst.api.model.summoner.runes;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class Rune {
 	private final int runeId;
 	private final int runeSlotId;

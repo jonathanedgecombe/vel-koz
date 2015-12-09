@@ -2,11 +2,6 @@ package at.lolst.api.model.game;
 
 import java.util.List;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class RecentGames {
 	private final List<Game> games;
 	private final long summonerId;

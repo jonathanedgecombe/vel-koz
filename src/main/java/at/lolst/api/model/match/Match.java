@@ -2,11 +2,6 @@ package at.lolst.api.model.match;
 
 import java.util.List;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class Match {
 	private final int mapId;
 	private final long matchCreation, matchDuration, matchId;

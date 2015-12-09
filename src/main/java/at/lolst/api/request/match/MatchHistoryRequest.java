@@ -16,7 +16,11 @@ public final class MatchHistoryRequest extends Request<MatchHistory> {
 	private final long summonerId;
 	private final int beginIndex, endIndex;
 
-	public MatchHistoryRequest(Region region, Consumer<Result<MatchHistory>> onCompletion, Consumer<Throwable> onError, long summonerId, int beginIndex, int endIndex) {
+	public MatchHistoryRequest(Region region, long summonerId, int beginIndex, int endIndex) {
+		this(region, null, null, summonerId, beginIndex, endIndex);
+	}
+
+	public MatchHistoryRequest(Region region, Consumer<Result<MatchHistory>> onCompletion, Consumer<Exception> onError, long summonerId, int beginIndex, int endIndex) {
 		super(region, onCompletion, onError);
 		this.summonerId = summonerId;
 		this.beginIndex = beginIndex;

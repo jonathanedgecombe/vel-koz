@@ -2,11 +2,6 @@ package at.lolst.api.model.data.mastery;
 
 import java.util.List;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class MasteryTree {
 	private final List<MasteryTreeList> Defense, Offense, Utility;
 

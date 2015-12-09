@@ -1,10 +1,5 @@
 package at.lolst.api.model.data.mastery;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class MasteryTreeItem {
 	private final int masteryId;
 	private final String prereq;

@@ -3,11 +3,6 @@ package at.lolst.api.model.match;
 import java.util.List;
 import java.util.Map;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class Frame {
 	private final List<Event> events;
 	private final Map<String, ParticipantFrame> participantFrames;

@@ -2,11 +2,6 @@ package at.lolst.api.model.summoner.runes;
 
 import java.util.List;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class RunePage {
 	private final long id;
 	private final List<Rune> slots;

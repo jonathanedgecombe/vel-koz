@@ -1,10 +1,5 @@
 package at.lolst.api.model.data;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class BasicDataStats {
 	private final double FlatArmorMod;
 	private final double FlatAttackSpeedMod;

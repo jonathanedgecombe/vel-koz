@@ -14,13 +14,16 @@ public final class MatchListRequest extends Request<MatchList> {
 	private final static Type TYPE = new TypeToken<MatchList>(){}.getType();
 
 	private final long summonerId;
-	private final int beginIndex, endIndex;
+	private final long beginTime;
 
-	public MatchListRequest(Region region, Consumer<Result<MatchList>> onCompletion, Consumer<Throwable> onError, long summonerId, int beginIndex, int endIndex) {
+	public MatchListRequest(Region region, long summonerId, long beginTime) {
+		this(region, null, null, summonerId, beginTime);
+	}
+
+	public MatchListRequest(Region region, Consumer<Result<MatchList>> onCompletion, Consumer<Exception> onError, long summonerId, long beginTime) {
 		super(region, onCompletion, onError);
 		this.summonerId = summonerId;
-		this.beginIndex = beginIndex;
-		this.endIndex = endIndex;
+		this.beginTime = beginTime;
 	}
 
 	@Override
@@ -30,18 +33,18 @@ public final class MatchListRequest extends Request<MatchList> {
 
 	@Override
 	public String getUrl() {
-		return "/api/lol/" + region + "/v2.2/matchlist/by-summoner/" + summonerId + "?beginIndex=" + beginIndex + "&endIndex=" + endIndex;
+		return "/api/lol/" + region + "/v2.2/matchlist/by-summoner/" + summonerId + "?beginTime=" + beginTime;
 	}
 
 	@Override
 	public boolean equals(Object o) {
 		if (!(o instanceof MatchListRequest)) return false;
 		MatchListRequest r = (MatchListRequest) o;
-		return (r.region == region && r.summonerId == summonerId && r.beginIndex == beginIndex && r.endIndex == endIndex);
+		return (r.region == region && r.summonerId == summonerId && r.beginTime == beginTime);
 	}
 
 	@Override
 	public int hashCode() {
-		return (int) (region.hashCode() + summonerId * 46447 + beginIndex * 23 + endIndex * 7);
+		return (int) (region.hashCode() + summonerId * 46447 + beginTime * 23 + 7);
 	}
 }

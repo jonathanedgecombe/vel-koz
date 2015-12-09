@@ -1,10 +1,5 @@
 package at.lolst.api.model.data.item;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class Group {
 	private final String key, MaxGroupOwnable;
 

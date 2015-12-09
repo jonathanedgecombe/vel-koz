@@ -1,10 +1,5 @@
 package at.lolst.api.model.data.champion;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class Skin {
 	private final int id, num;
 	private final String name;

@@ -1,10 +1,5 @@
 package at.lolst.api.model.currentgame;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class Observer {
 	private final String encryptionKey;
 

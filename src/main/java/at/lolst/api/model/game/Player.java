@@ -1,10 +1,5 @@
 package at.lolst.api.model.game;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class Player {
 	private final int championId, teamId;
 	private final long summonerId;

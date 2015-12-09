@@ -2,11 +2,6 @@ package at.lolst.api.model.match;
 
 import java.util.List;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class Timeline {
 	private final long frameInterval;
 	private final List<Frame> frames;

@@ -9,11 +9,6 @@ import at.lolst.api.request.RequestDispatcher;
 import at.lolst.api.request.Result;
 import at.lolst.api.request.Request;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class APIConnection {
 	private final List<RateLimit> rateLimits = new ArrayList<>();
 	private final Cache cache;
@@ -50,39 +45,18 @@ public final class APIConnection {
 		return true;
 	}
 
-	/**
-	 * Execute a request.
-	 * 
-	 * @param request
-	 * @param wait Block while waiting for rate limits, throws RequestException with error code 429 if wait is false and a rate limit is saturated.
-	 * @return Future for the request.
-	 * @throws InterruptedException
-	 */
-	public <T> Future execute(Request<T> request, boolean wait) throws InterruptedException {
-		synchronized (cache.getExecuting()) {
-			if (cache.isExecuting(request)) {
-				return cache.onExecute(request);
-			}
-		}
-
+	public <T> Future<T> execute(Request<T> request, boolean wait) throws InterruptedException {
 		Optional<Result<T>> result = cache.check(request);
 
 		if (result.isPresent()) {
-			request.getOnCompletion().accept(result.get());
-			return new Future().unlock();
+			request.accept(result.get());
+			return new Future<T>().unlock(result.get());
 		} else {
 			return dispatcher.execute(request, true, wait);
 		}
 	}
 
-	/**
-	 * Execute a request, waits for rate limits.
-	 * 
-	 * @param request
-	 * @return Future for the request.
-	 * @throws InterruptedException
-	 */
-	public <T> Future execute(Request<T> request) throws InterruptedException {
+	public <T> Future<T> execute(Request<T> request) throws InterruptedException {
 		return execute(request, true);
 	}
 

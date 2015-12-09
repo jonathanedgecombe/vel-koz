@@ -2,11 +2,6 @@ package at.lolst.api.model.champion;
 
 import java.util.List;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class ChampionStatusList {
 	private final List<ChampionStatus> champions;
 

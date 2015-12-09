@@ -2,11 +2,6 @@ package at.lolst.api.model.data;
 
 import java.util.List;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class SpellVars {
 	private final List<Double> coeff;
 	private final String dyn, key, link, ranksWith;

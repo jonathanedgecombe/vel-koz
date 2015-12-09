@@ -3,11 +3,6 @@ package at.lolst.api.model;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * 
- * @author jonathan
- *
- */
 public enum Region {
 	EUW("EUW", "euw.api.pvp.net", "EUW1"),
 	EUNE("EUNE", "eune.api.pvp.net", "EUN1"),

@@ -4,11 +4,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class Util {
 	public static String join(List<?> list, String sep) {
 		Iterator<?> it = list.iterator();

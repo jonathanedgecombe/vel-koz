@@ -1,10 +1,5 @@
 package at.lolst.api.model.summoner;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class Summoner {
 	private final long id;
 	private final String name;

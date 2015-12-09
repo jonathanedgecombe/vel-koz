@@ -1,10 +1,5 @@
 package at.lolst.api.model.match;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class ParticipantTimelineData {
 	private final double tenToTwenty, thirtyToEnd, twentyToThirty, zeroToTen;
 

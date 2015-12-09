@@ -1,10 +1,5 @@
 package at.lolst.api.model.game;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class RawStats {
 	private final int assists, barracksKilled, championsKilled,
 			combatPlayerScore, consumablesPurchased, damageDealtPlayer,

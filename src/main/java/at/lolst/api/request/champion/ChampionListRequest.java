@@ -15,7 +15,11 @@ public final class ChampionListRequest extends Request<ChampionList> {
 
 	private final boolean freeToPlay;
 
-	public ChampionListRequest(Region region, Consumer<Result<ChampionList>> onCompletion, Consumer<Throwable> onError, boolean freeToPlay) {
+	public ChampionListRequest(Region region, boolean freeToPlay) {
+		this(region, null, null, freeToPlay);
+	}
+
+	public ChampionListRequest(Region region, Consumer<Result<ChampionList>> onCompletion, Consumer<Exception> onError, boolean freeToPlay) {
 		super(region, onCompletion, onError);
 		this.freeToPlay = freeToPlay;
 	}

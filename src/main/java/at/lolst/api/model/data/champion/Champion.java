@@ -4,11 +4,6 @@ import java.util.List;
 
 import at.lolst.api.model.data.Image;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class Champion {
 	private final List<String> allytips, enemytips, tags;
 	private final String blurb, key, lore, name, partype, title;

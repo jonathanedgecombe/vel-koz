@@ -1,10 +1,5 @@
 package at.lolst.api.model.data;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class Image {
 	private final String full, group, sprite;
 	private final int h, w, x, y;

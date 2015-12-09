@@ -2,11 +2,6 @@ package at.lolst.api.model.currentgame;
 
 import java.util.List;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class CurrentGameInfo {
 	private final List<BannedChampion> bannedChampions;
 	private final long gameId, gameLength, gameQueueConfigId, gameStartTime, mapId;

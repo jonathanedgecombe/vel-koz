@@ -10,11 +10,6 @@ import com.ning.http.client.AsyncHttpClient;
 import com.ning.http.client.AsyncHttpClientConfig;
 import com.ning.http.client.Response;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class RequestDispatcher {
 	private final APIConnection connection;
 	private final Cache cache;
@@ -29,7 +24,7 @@ public final class RequestDispatcher {
 		this.client = new AsyncHttpClient(new AsyncHttpClientConfig.Builder().setAllowPoolingConnections(true).setAllowPoolingSslConnections(true).build());
 	}
 
-	public <T> Future execute(final Request<T> request, boolean aggregate, boolean wait) throws InterruptedException {
+	public <T> Future<T> execute(final Request<T> request, boolean aggregate, boolean wait) throws InterruptedException {
 		if (aggregate) {
 			Optional<RequestAggregator<T>> aggreagtor = request.getAggregator();
 	
@@ -46,16 +41,11 @@ public final class RequestDispatcher {
 			url += "?api_key=" + key;
 		}
 
-		final Future future = new Future();
-
-		synchronized (cache.getExecuting()) {
-			cache.startExecuting(request, future);
-		}
-
+		final Future<T> future = new Future<>();
 		if (!connection.waitForRateLimits(wait)) {
 			RequestException ex = new RequestException(429);
-			request.getOnError().accept(ex);
-			return future.unlock();
+			request.accept(ex);
+			return future.unlock(request, ex);
 		}
 
 		client.prepareGet(url).execute(new AsyncCompletionHandler<Response>() {
@@ -66,43 +56,31 @@ public final class RequestDispatcher {
 						String body = response.getResponseBody();
 						
 						T value = request.deserialize(body);
-						Result<T> result = new Result<>(body, value);
-						cache.cache(request, result, true);
-						request.getOnCompletion().accept(result);
+						Result<T> result = new Result<>(body, value, request, cache);
+						request.accept(result);
 
-						synchronized (cache.getExecuting()) {
-							cache.finishExecuting(request, result);
-						}
+						future.unlock(result);
 					} catch (Exception ex) {
-						request.getOnError().accept(ex);
+						request.accept(ex);
 
-						synchronized (cache.getExecuting()) {
-							cache.finishExecutingError(request, ex);
-						}
+						future.unlock(request, new RequestException(500));
 					}
 				} else {
 					RequestException ex = new RequestException(response.getStatusCode());
-					request.getOnError().accept(ex);
+					request.accept(ex);
 
-					synchronized (cache.getExecuting()) {
-						cache.finishExecutingError(request, ex);
-					}
+					future.unlock(request, ex);
 				}
 
-				future.unlock();
 				return response;
 			}
 
 			@Override
 			public void onThrowable(Throwable error) {
-				request.getOnError().accept(error);
-
-				synchronized (cache.getExecuting()) {
-					cache.finishExecutingError(request, error);
-				}
+				request.accept(new Exception(error));
 
 				try {
-					future.unlock();
+					future.unlock(request, new RequestException(500));
 				} catch (InterruptedException ex) {
 					ex.printStackTrace();
 				}

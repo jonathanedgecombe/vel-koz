@@ -2,11 +2,6 @@ package at.lolst.api.model.data.summonerspell;
 
 import java.util.Map;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class SummonerSpellList {
 	private final Map<String, SummonerSpell> data;
 	private final String type, version;

@@ -1,25 +1,19 @@
 package at.lolst.api.request;
 
-/**
- * 
- * @author jonathan
- *
- * @param <T>
- */
 public final class CacheEntry<T> {
 	private final Result<T> result;
-	private final long time;
+	private final long timeout;
 
-	public CacheEntry(Result<T> result) {
+	public CacheEntry(Result<T> result, long timeout) {
 		this.result = result;
-		this.time = System.currentTimeMillis();
+		this.timeout = timeout;
 	}
 
 	public Result<T> getResult() {
 		return result;
 	}
 
-	public long getTime() {
-		return time;
+	public boolean expired() {
+		return System.currentTimeMillis() > timeout;
 	}
 }

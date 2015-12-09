@@ -2,11 +2,6 @@ package at.lolst.api.model.match;
 
 import java.util.List;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class Team {
 	private final List<BannedChampion> bans;
 	private final int baronKills, dragonKills, inhibitorKills, teamId, towerKills, vilemawKills;

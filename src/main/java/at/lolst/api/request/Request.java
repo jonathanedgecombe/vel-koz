@@ -8,18 +8,12 @@ import java.util.function.Consumer;
 import at.lolst.api.model.Region;
 import com.google.gson.Gson;
 
-/**
- * 
- * @author jonathan
- *
- * @param <T>
- */
 public abstract class Request<T> {
 	protected final Region region;
 	protected final Consumer<Result<T>> onCompletion;
-	protected final Consumer<Throwable> onError;
+	protected final Consumer<Exception> onError;
 
-	public Request(Region region, Consumer<Result<T>> onCompletion, Consumer<Throwable> onError) {
+	public Request(Region region, Consumer<Result<T>> onCompletion, Consumer<Exception> onError) {
 		this.region = region;
 		this.onCompletion = onCompletion;
 		this.onError = onError;
@@ -41,8 +35,16 @@ public abstract class Request<T> {
 		return onCompletion;
 	}
 
-	public Consumer<Throwable> getOnError() {
+	public void accept(Result<T> result) {
+		if (onCompletion != null) onCompletion.accept(result);
+	}
+
+	public Consumer<Exception> getOnError() {
 		return onError;
+	}
+
+	public void accept(Exception error) {
+		onError.accept(error);
 	}
 
 	public Optional<RequestAggregator<T>> getAggregator() {

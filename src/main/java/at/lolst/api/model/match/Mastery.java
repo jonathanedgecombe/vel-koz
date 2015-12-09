@@ -1,10 +1,5 @@
 package at.lolst.api.model.match;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class Mastery {
 	private final int masteryId, rank;
 

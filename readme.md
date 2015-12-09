@@ -12,7 +12,7 @@ APIConnection connection = new APIConnection(
     new Config(65536)
 );
 
-Future f = connection.execute(new SummonerRequest(
+Future<Map<String, String>> f = connection.execute(new SummonerRequest(
     Region.EUW, 
     result -> result.getValue().values().forEach(
         summoner -> System.out.println(summoner.getId() + ": " + summoner.getName())

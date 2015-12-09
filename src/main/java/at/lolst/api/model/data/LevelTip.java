@@ -2,11 +2,6 @@ package at.lolst.api.model.data;
 
 import java.util.List;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class LevelTip {
 	private final List<String> effect, label;
 

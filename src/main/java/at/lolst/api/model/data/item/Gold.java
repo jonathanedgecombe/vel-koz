@@ -1,10 +1,5 @@
 package at.lolst.api.model.data.item;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class Gold {
 	private final int base, sell, total;
 	private final boolean purchasable;

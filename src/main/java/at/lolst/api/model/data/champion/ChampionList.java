@@ -2,11 +2,6 @@ package at.lolst.api.model.data.champion;
 
 import java.util.Map;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class ChampionList {
 	private final Map<String, Champion> data;
 	private final Map<String, String> keys;

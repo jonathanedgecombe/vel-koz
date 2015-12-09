@@ -16,7 +16,11 @@ public final class MatchRequest extends Request<Match> {
 	private final long matchId;
 	private final boolean includeTimeline;
 
-	public MatchRequest(Region region, Consumer<Result<Match>> onCompletion, Consumer<Throwable> onError, long matchId, boolean includeTimeline) {
+	public MatchRequest(Region region, long matchId, boolean includeTimeline) {
+		this(region, null, null, matchId, includeTimeline);
+	}
+
+	public MatchRequest(Region region, Consumer<Result<Match>> onCompletion, Consumer<Exception> onError, long matchId, boolean includeTimeline) {
 		super(region, onCompletion, onError);
 		this.matchId = matchId;
 		this.includeTimeline = includeTimeline;

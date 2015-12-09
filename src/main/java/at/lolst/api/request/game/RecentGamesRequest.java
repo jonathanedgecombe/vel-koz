@@ -15,7 +15,11 @@ public final class RecentGamesRequest extends Request<RecentGames> {
 
 	private final long summonerId;
 
-	public RecentGamesRequest(Region region, Consumer<Result<RecentGames>> onCompletion, Consumer<Throwable> onError, long summonerId) {
+	public RecentGamesRequest(Region region, long summonerId) {
+		this(region, null, null, summonerId);
+	}
+
+	public RecentGamesRequest(Region region, Consumer<Result<RecentGames>> onCompletion, Consumer<Exception> onError, long summonerId) {
 		super(region, onCompletion, onError);
 		this.summonerId = summonerId;
 	}

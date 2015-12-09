@@ -2,11 +2,6 @@ package at.lolst.api.model.summoner.masteries;
 
 import java.util.List;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class MasteryPage {
 	private final List<Mastery> masteries;
 	private final long id;

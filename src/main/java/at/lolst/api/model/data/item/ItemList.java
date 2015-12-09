@@ -5,11 +5,6 @@ import java.util.Map;
 
 import at.lolst.api.model.data.BasicData;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class ItemList {
 	private final BasicData basic;
 	private final Map<String, Item> data;

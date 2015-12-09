@@ -5,11 +5,6 @@ import java.util.List;
 import at.lolst.api.model.data.rune.Rune;
 import at.lolst.api.model.match.Mastery;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class Participant {
 	private final boolean bot;
 	private final long championId, profileIconId, spell1Id, spell2Id, summonerId, teamId;

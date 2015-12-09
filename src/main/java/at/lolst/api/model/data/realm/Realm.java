@@ -2,11 +2,6 @@ package at.lolst.api.model.data.realm;
 
 import java.util.Map;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class Realm {
 	private final String cdn, css, dd, l, lg, store, v;
 	private final Map<String, String> n;

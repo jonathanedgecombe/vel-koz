@@ -2,11 +2,6 @@ package at.lolst.api.model.data.champion;
 
 import java.util.List;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class Block {
 	private final List<BlockItem> items;
 	private final boolean recMath;

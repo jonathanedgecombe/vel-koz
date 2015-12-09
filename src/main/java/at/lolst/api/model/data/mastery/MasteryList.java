@@ -2,11 +2,6 @@ package at.lolst.api.model.data.mastery;
 
 import java.util.Map;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class MasteryList {
 	private final Map<String, Mastery> data;
 	private final MasteryTree tree;

@@ -2,11 +2,6 @@ package at.lolst.api.model.data.item;
 
 import java.util.List;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class ItemTree {
 	private final String header;
 	private final List<String> tags;

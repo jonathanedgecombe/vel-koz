@@ -1,10 +1,5 @@
 package at.lolst.api.model.data.champion;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class Info {
 	private final int attack, defense, difficulty, magic;
 

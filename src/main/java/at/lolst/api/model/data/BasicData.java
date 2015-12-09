@@ -6,11 +6,6 @@ import java.util.Map;
 import at.lolst.api.model.data.item.Gold;
 import at.lolst.api.model.data.rune.MetaData;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class BasicData {
 	private final String colloq;
 	private final boolean consumeOnFull;

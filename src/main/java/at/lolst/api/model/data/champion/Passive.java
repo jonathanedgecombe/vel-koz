@@ -2,11 +2,6 @@ package at.lolst.api.model.data.champion;
 
 import at.lolst.api.model.data.Image;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class Passive {
 	private final String description, name, sanitizedDescription;
 	private final Image image;

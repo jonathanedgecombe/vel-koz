@@ -4,11 +4,6 @@ import java.util.List;
 
 import at.lolst.api.model.data.Image;
 
-/**
- * 
- * @author jonathan
- *
- */
 public final class Mastery {
 	private final List<String> description;
 	private final int id, ranks;
