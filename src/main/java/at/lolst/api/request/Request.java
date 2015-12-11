@@ -11,9 +11,9 @@ import com.google.gson.Gson;
 public abstract class Request<T> {
 	protected final Region region;
 	protected final Consumer<Result<T>> onCompletion;
-	protected final Consumer<Exception> onError;
+	protected final Consumer<RequestException> onError;
 
-	public Request(Region region, Consumer<Result<T>> onCompletion, Consumer<Exception> onError) {
+	public Request(Region region, Consumer<Result<T>> onCompletion, Consumer<RequestException> onError) {
 		this.region = region;
 		this.onCompletion = onCompletion;
 		this.onError = onError;
@@ -39,11 +39,11 @@ public abstract class Request<T> {
 		if (onCompletion != null) onCompletion.accept(result);
 	}
 
-	public Consumer<Exception> getOnError() {
+	public Consumer<RequestException> getOnError() {
 		return onError;
 	}
 
-	public void accept(Exception error) {
+	public void accept(RequestException error) {
 		if (onError != null) onError.accept(error);
 	}
 

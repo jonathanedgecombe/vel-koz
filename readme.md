@@ -20,13 +20,16 @@ future.await();
 if (future.getResult().isPresent()) {
 	future.getResult().get().cache(2, TimeUnit.HOURS);
 
-	for (Summoner summoner : future.getResult().get().getValue().values()) {
-		connection.execute(new CurrentGameRequest(
+	CurrentGameRequest[] requests = future.get().values().stream()
+		.map(summoner -> new CurrentGameRequest(
 				Region.EUW, 
 				result -> System.out.println(result), 
-				error -> error.printStackTrace(), 
-				summoner.getId()));
-	}
+				error -> System.out.println(error), 
+				summoner.getId()))
+		.collect(Collectors.toList()).toArray(new CurrentGameRequest[0]);
+
+	FutureList<CurrentGameInfo> futures = connection.execute(requests);
+	futures.await();
 } else {
 	future.getException().get().printStackTrace();
 }

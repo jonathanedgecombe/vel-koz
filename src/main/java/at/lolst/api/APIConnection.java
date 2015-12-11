@@ -60,6 +60,17 @@ public final class APIConnection {
 		return execute(request, true);
 	}
 
+	@SafeVarargs
+	public final <T> FutureList<T> execute(Request<T>... requests) throws InterruptedException {
+		FutureList<T> list = new FutureList<>();
+
+		for (Request<T> request : requests) {
+			list.add(execute(request));
+		}
+
+		return list;
+	}
+
 	public void close() {
 		dispatcher.close();
 	}

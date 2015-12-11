@@ -15,6 +15,7 @@ import at.lolst.api.model.Region;
 import at.lolst.api.model.summoner.Summoner;
 import at.lolst.api.request.Request;
 import at.lolst.api.request.RequestAggregator;
+import at.lolst.api.request.RequestException;
 import at.lolst.api.request.Result;
 
 public final class SummonerRequest extends Request<Map<String, Summoner>> {
@@ -26,7 +27,7 @@ public final class SummonerRequest extends Request<Map<String, Summoner>> {
 		this(region, null, null, summonerIds);
 	}
 
-	public SummonerRequest(Region region, Consumer<Result<Map<String, Summoner>>> onCompletion, Consumer<Exception> onError, Long... summonerIds) {
+	public SummonerRequest(Region region, Consumer<Result<Map<String, Summoner>>> onCompletion, Consumer<RequestException> onError, Long... summonerIds) {
 		super(region, onCompletion, onError);
 		this.summonerIds = Arrays.asList(summonerIds);
 	}

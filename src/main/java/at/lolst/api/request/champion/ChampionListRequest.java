@@ -8,6 +8,7 @@ import com.google.gson.reflect.TypeToken;
 import at.lolst.api.model.Region;
 import at.lolst.api.model.data.champion.ChampionList;
 import at.lolst.api.request.Request;
+import at.lolst.api.request.RequestException;
 import at.lolst.api.request.Result;
 
 public final class ChampionListRequest extends Request<ChampionList> {
@@ -19,7 +20,7 @@ public final class ChampionListRequest extends Request<ChampionList> {
 		this(region, null, null, freeToPlay);
 	}
 
-	public ChampionListRequest(Region region, Consumer<Result<ChampionList>> onCompletion, Consumer<Exception> onError, boolean freeToPlay) {
+	public ChampionListRequest(Region region, Consumer<Result<ChampionList>> onCompletion, Consumer<RequestException> onError, boolean freeToPlay) {
 		super(region, onCompletion, onError);
 		this.freeToPlay = freeToPlay;
 	}

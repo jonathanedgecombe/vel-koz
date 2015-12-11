@@ -19,7 +19,7 @@ public final class Result<T> {
 		return json;
 	}
 
-	public T getValue() {
+	public T get() {
 		return value;
 	}
 

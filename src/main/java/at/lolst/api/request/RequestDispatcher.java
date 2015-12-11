@@ -61,9 +61,9 @@ public final class RequestDispatcher {
 
 						future.unlock(result);
 					} catch (Exception ex) {
-						request.accept(ex);
-
-						future.unlock(request, new RequestException(500));
+						RequestException re = new RequestException(RequestException.DESERIALIZE_EXCEPTION);
+						request.accept(re);
+						future.unlock(request, re);
 					}
 				} else {
 					RequestException ex = new RequestException(response.getStatusCode());
@@ -77,10 +77,11 @@ public final class RequestDispatcher {
 
 			@Override
 			public void onThrowable(Throwable error) {
-				request.accept(new Exception(error));
+				RequestException re = new RequestException(RequestException.CONNECTION_EXCEPTION);
+				request.accept(re);
 
 				try {
-					future.unlock(request, new RequestException(500));
+					future.unlock(request, re);
 				} catch (InterruptedException ex) {
 					ex.printStackTrace();
 				}

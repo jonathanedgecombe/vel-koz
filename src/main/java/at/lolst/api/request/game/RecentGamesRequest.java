@@ -8,6 +8,7 @@ import com.google.gson.reflect.TypeToken;
 import at.lolst.api.model.Region;
 import at.lolst.api.model.game.RecentGames;
 import at.lolst.api.request.Request;
+import at.lolst.api.request.RequestException;
 import at.lolst.api.request.Result;
 
 public final class RecentGamesRequest extends Request<RecentGames> {
@@ -19,7 +20,7 @@ public final class RecentGamesRequest extends Request<RecentGames> {
 		this(region, null, null, summonerId);
 	}
 
-	public RecentGamesRequest(Region region, Consumer<Result<RecentGames>> onCompletion, Consumer<Exception> onError, long summonerId) {
+	public RecentGamesRequest(Region region, Consumer<Result<RecentGames>> onCompletion, Consumer<RequestException> onError, long summonerId) {
 		super(region, onCompletion, onError);
 		this.summonerId = summonerId;
 	}

@@ -59,7 +59,7 @@ public class SummonerRequestAggregator extends RequestAggregator<Map<String, Sum
 				for (Future<Map<String, Summoner>> future : futures) {
 					Optional<Result<Map<String, Summoner>>> result = future.getResult();
 					if (result.isPresent()) {
-						map.putAll(result.get().getValue());
+						map.putAll(result.get().get());
 					}
 				}
 
@@ -86,7 +86,7 @@ public class SummonerRequestAggregator extends RequestAggregator<Map<String, Sum
 
 			String key = Long.toString(summonerId);
 			Map<String, Summoner> map = new HashMap<>();
-			map.put(key, result.getValue().get(key));
+			map.put(key, result.get().get(key));
 			Result<Map<String, Summoner>> newResult = new Result<>(result.getJson(), map, request, cache);
 			cache.cache(r, newResult, false, timeout);
 		});

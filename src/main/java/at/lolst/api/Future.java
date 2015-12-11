@@ -51,4 +51,12 @@ public class Future<T> {
 		if (exceptions.isEmpty()) return Optional.empty();
 		return Optional.of(exceptions.values().iterator().next());
 	}
+
+	public T get() {
+		Optional<Result<T>> result = getResult();
+		if (result.isPresent())
+			return result.get().get();
+
+		return null;
+	}
 }

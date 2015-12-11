@@ -8,6 +8,7 @@ import com.google.gson.reflect.TypeToken;
 import at.lolst.api.model.Region;
 import at.lolst.api.model.match.history.MatchList;
 import at.lolst.api.request.Request;
+import at.lolst.api.request.RequestException;
 import at.lolst.api.request.Result;
 
 public final class MatchListRequest extends Request<MatchList> {
@@ -20,7 +21,7 @@ public final class MatchListRequest extends Request<MatchList> {
 		this(region, null, null, summonerId, beginTime);
 	}
 
-	public MatchListRequest(Region region, Consumer<Result<MatchList>> onCompletion, Consumer<Exception> onError, long summonerId, long beginTime) {
+	public MatchListRequest(Region region, Consumer<Result<MatchList>> onCompletion, Consumer<RequestException> onError, long summonerId, long beginTime) {
 		super(region, onCompletion, onError);
 		this.summonerId = summonerId;
 		this.beginTime = beginTime;
