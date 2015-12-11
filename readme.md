@@ -8,24 +8,28 @@ Example Use
 
 ~~~
 APIConnection connection = new APIConnection(
-    "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", 
-    new Config(65536)
+		"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", 
+		new ConfigBuilder().setCacheSize(1024).build(),
+		new RateLimit(500, 10, TimeUnit.MINUTES), 
+		new RateLimit(10, 10, TimeUnit.SECONDS)
 );
 
-Future<Map<String, String>> f = connection.execute(new SummonerRequest(
-    Region.EUW, 
-    result -> result.getValue().values().forEach(
-        summoner -> System.out.println(summoner.getId() + ": " + summoner.getName())
-    ), 
-    error -> error.printStackTrace(), 
-    27966968L, 46768456L, 27665779L, 50499923L, 27695267L
-));
+Future<Map<String, Summoner>> future = connection.execute(new SummonerByNameRequest(Region.EUW, "Jonneh", "NOT BAIT"));
+future.await();
 
-System.out.println("before wait on future");
+if (future.getResult().isPresent()) {
+	future.getResult().get().cache(2, TimeUnit.HOURS);
 
-f.await();
-
-System.out.println("after wait on future");
+	for (Summoner summoner : future.getResult().get().getValue().values()) {
+		connection.execute(new CurrentGameRequest(
+				Region.EUW, 
+				result -> System.out.println(result), 
+				error -> error.printStackTrace(), 
+				summoner.getId()));
+	}
+} else {
+	future.getException().get().printStackTrace();
+}
 
 connection.close();
 ~~~
